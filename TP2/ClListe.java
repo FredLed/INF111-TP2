@@ -26,7 +26,7 @@ public class ClListe<T> {
 		return nbElements == 0;
 	}
 	
-	public void InsererAvant(T valeur) {
+	public void insererAvant(T valeur) {
 		// Dans tous les cas, on met tout le temps la position courante à la 
 		// nouvelle donnée entrée.
 		if (estVide()) {
@@ -65,7 +65,7 @@ public class ClListe<T> {
 		++nbElements;
 	}
 	
-	public void InsererApres(T valeur) {
+	public void insererApres(T valeur) {
 		// Dans tous les cas, on met tout le temps la position courante à la 
 		// nouvelle donnée entrée. 
 		if (estVide()) {
@@ -106,7 +106,7 @@ public class ClListe<T> {
 	 * suppression.
 	 * @return si la suppression à eu lieu ou non
 	 */
-	public boolean Supprimer() {
+	public boolean supprimer() {
 		//on regarde si la liste est vide ou si la position courante est null.
 		if (estVide() || positionCourante == null) {
 			return false;
