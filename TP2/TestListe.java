@@ -27,11 +27,11 @@ public class TestListe {
 		}
 		
 		try {
-			liste.Supprimer();
+			liste.supprimer();
 			liste.setPositionCouranteDebut();
-			liste.Supprimer();
+			liste.supprimer();
 			liste.setPositionCouranteFin();
-			liste.Supprimer();
+			liste.supprimer();
 			
 		}
 		catch(Exception e) {

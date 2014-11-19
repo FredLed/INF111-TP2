@@ -2,8 +2,8 @@
 public class GrilleJeu {
 	
 	//Les tableaux d’indices du jeu
-    private ListePositionCourante [] tabBlocLignes;
-	private ListePositionCourante [] tabBlocColonnes;
+    private ClListe<InfoBloc> tabBlocLignes= new ClListe<InfoBloc>();
+	private ClListe<InfoBloc> tabBlocColonnes= new ClListe<InfoBloc>();
 	
 	private GrilleDessin dessin_orig;
 	private GrilleDessin dessin_cache;
@@ -17,9 +17,9 @@ public class GrilleJeu {
 		//prendre la taille du dessin
 		this.taille = dessin.getTaille();
 		//prendre le nombre de lignes dans le dessin
-		this.tabBlocLignes = new int [dessin.getLigne()];
+		//this.tabBlocLignes = new ClListe[dessin.getLigne()];
 		//prendre le nombre de colonnes dans le dessin
-		this.tabBlocColonnes = new int [dessin.getColonne()];
+		//this.tabBlocColonnes = new ClListe[dessin.getColonne()];
 		
 		//si la taille est 5X5
 		if(taille == 5)
@@ -45,7 +45,18 @@ public class GrilleJeu {
 	 */
 	public InfoBloc[] getInfoBlocLigne(int ligne){
 		//retourne le nombre de lignes du dessin
-		return ligne;
+		InfoBloc[] monTableauLigne = new InfoBloc[tabBlocLignes.getNbElements()];
+		for(int i =0;i<monTableauLigne.length;i++){
+			int debut;
+			int NbCases;
+			int NbRestant;
+			
+			for(int j=0;j<monTableauLigne.length;j++){
+				
+			}
+			
+		}
+		return monTableauLigne;
 	}
 	
 	/**
@@ -55,7 +66,9 @@ public class GrilleJeu {
 	 */
 	public InfoBloc[] getInfoBlocColonne(int colonne){
 		//retourne le nombre de colonnes du dessin
-		return colonne;
+		InfoBloc[] monTableauColonne = new InfoBloc[taille];
+		
+		return monTableauColonne;
 	}
 	
 /**	Début
@@ -73,15 +86,32 @@ Fin
 		
 		//initialise  la liste vide à la position i pour toutes les lignes
 		for (int i=0;i <= dessin_orig.getTaille();i++){
-			tabBlocLignes = i;
+			//tabBlocLignes = i;
 		}
 		
 		//créer un infobloc pour toutes cases coloriées pour toutes les colonnes
 		for (int j=0; j <= dessin_orig.getTaille() - 1;j++){
 			if (dessin_orig.estValide()){
-				InfoBloc.InfoBloc();
+				//InfoBloc.InfoBloc();
 			}
 		
+		}
+	}
+	
+	public void ajusterJeu(int i, int j){
+		
+		if(tabBlocLignes.estVide()){
+			
+		}else{
+			for(int z =0;z<i;z++){
+				try {
+		
+					tabBlocLignes.avancer();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
