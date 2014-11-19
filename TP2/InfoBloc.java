@@ -15,5 +15,7 @@ public class InfoBloc {
 	public int getNbCases(){
 		return nb;
 	}
-	
+	public int getDebut(){
+		return debut;
+	}
 }

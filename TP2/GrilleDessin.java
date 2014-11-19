@@ -117,6 +117,19 @@ public class GrilleDessin implements Serializable {
 		boolean ligneValide = validerDessin(false);
 		return colonneValide && ligneValide;
 	}
+	public int getLigne(){
+		return grille.length;
+	}
+	
+	/**
+	 * Accesseur pour le nombre de colonnes
+	 * 
+	 * @return Le nombre de colonnes
+	 */
+	public int getColonne(){
+		return grille[0].length;
+	}
+
 	
    /**
     * Valider dessin contient  la valeur que retourne la fonction 

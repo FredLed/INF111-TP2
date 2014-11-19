@@ -53,7 +53,7 @@ public class UtilitaireAffichageConsole {
 
 			tabBlocLignes = grille.getInfoBlocLigne(ligne);
 			
-			for(int j =0; j <taille- tabBlocLignes.length;j++)
+			for(int j =0; j <taille-tabBlocLignes.length;j++)
 				System.out.print("   ");
 
 			for(int j =0; j < tabBlocLignes.length;j++)
@@ -68,7 +68,7 @@ public class UtilitaireAffichageConsole {
 			//Gestion d'alignement des colonnes
 			for(int j = 0; j < taille; j++){
 				System.out.print("|");
-				String s = dessin.estColorie(ligne, j) ?"x ":"  ";
+				String s = dessin.estColorie(ligne, j) ?"x":" ";
 
 					System.out.print(" "+ s);
 			}
@@ -77,7 +77,7 @@ public class UtilitaireAffichageConsole {
 			
 			//On affiche les espace d'alignement
 			for(int j =0; j <taille;j++)
-				System.out.print( "   ");
+				System.out.print("   ");
 			
 			
 			//Affichage de la même première ligne
@@ -86,7 +86,6 @@ public class UtilitaireAffichageConsole {
 
 
 			System.out.print("|");
-
 
 
 			System.out.println();
