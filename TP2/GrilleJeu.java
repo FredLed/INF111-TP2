@@ -101,11 +101,16 @@ Fin
 	public void ajusterJeu(int i, int j){
 		
 		if(tabBlocLignes.estVide()){
-			
+			//Mettre une message
 		}else{
+			try {
+				tabBlocLignes.setPositionCouranteDebut();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			for(int z =0;z<i;z++){
 				try {
-		
 					tabBlocLignes.avancer();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
