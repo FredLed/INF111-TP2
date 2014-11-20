@@ -1,3 +1,7 @@
+import java.io.File;
+
+import javax.swing.*;
+
 
 public class GrilleJeu {
 	
@@ -54,6 +58,7 @@ public class GrilleJeu {
 
 	// Voir getInfoBlocs() dans GrilleDessin.java
 	/*public InfoBloc[] getInfoBlocLigne(int ligne){ 
+		Integer[] a = new Integer[2];
 		//retourne le nombre de lignes du dessin
 		InfoBloc[] monTableauLigne = new InfoBloc[tabBlocLignes.getNbElements()];
 		for(int i =0;i<monTableauLigne.length;i++){
@@ -188,9 +193,18 @@ public class GrilleJeu {
 	
 	// PROGRAMME PRINCIPALE
 	public static void main(String[] args) {
-		GrilleDessin dessin;
+		GrilleDessin dessin=null;
 		
 		// Lecture du fichier
+		JFrame j = new JFrame();
+		JPanel p = new JPanel();
+		j.setContentPane(p);
+		File i = UtilitaireFichier.JFileChooser(p);
+		i=UtilitaireFichier.accept(i);
+		dessin = UtilitaireFichier.lire(i, p);
+		if(dessin!=null)
+		System.out.println("alalalal");
+		
 		
 	}
 }

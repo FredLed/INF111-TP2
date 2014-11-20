@@ -18,44 +18,32 @@ import java.awt.*;
 public class UtilitaireFichier {
 	
 	//demander le fichier par GUI
-	public static void JFileChooser(JPanel component) {
+	public static File JFileChooser(JPanel component) {
 		
 		//créer un nouveau objet du file chooser
 		final JFileChooser fc = new JFileChooser();
 		boolean bonfichier = false;
+		File file=null;
 		
-		while (bonfichier==false) {
 			//répondre quand on clique sur la souris
 			int returnVal = fc.showOpenDialog(component);
 			
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
+				 file = fc.getSelectedFile();
 					
-				if (accept(file)) {			
-					lire(file,component);
-					bonfichier = true;
-				} 
-				else {
-					JOptionPane.showMessageDialog(component,"Le fichier est invalide.",
-											"Erreur",JOptionPane.ERROR_MESSAGE);
-				}
-			
-			}
-			else {
-				bonfichier = true;
-			}	
-		}
-	}	
+				} 			
+		return file;	
+		}	
 		
 	
 	//vérifie le fichier pour voir si c'est bien une extension .dsn
-	public static boolean accept(File f){
-		boolean estbon = false;
+	public static File accept(File f){
+		File estbon=null;
 		//filtre pour l'extension .dsn
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("fichier dsn","dsn");
 		//retourne true si ça correspond à l'extension .dsn
 	    if(filter.accept(f)){
-	    	estbon = true;
+	    	estbon = f;
 	    }
 	    return estbon;
 	}
