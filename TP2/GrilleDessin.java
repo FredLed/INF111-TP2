@@ -31,24 +31,39 @@ public class GrilleDessin implements Serializable {
 	public GrilleDessin getDessin(){
 		return this;
 	}
-	public InfoBloc[] getInfoBlocLigne(int ligne){
-		InfoBloc[] monTableauLigne= new InfoBloc[grille.length];
-		int compteur =1;
+	
+	/**
+	 * Permet de trouver la liste des différents InfoBlocs dans une des lignes
+	 * ou colonnes du dessin.
+	 * @param l'indice de la ligne ou colonne où faire la recherche
+	 * @param colonne : Vrai si on recherche dans la colonne
+	 * 					Faux si on recherche dans la ligne
+	 * @return La liste des infos blocs trouver, null si aucun bloc.
+	 */
+	public ClListe<InfoBloc> getInfoBlocs(int indice, boolean colonne) {
+		int nbCase = 0;
+		int indiceDebut = 0;
+		ClListe<InfoBloc> listeBlocs = new ClListe<InfoBloc>();
 		
-		for(int i=0;i<grille.length;i++){
-			monTableauLigne[i]= new InfoBloc(1,compteur,grille.length-compteur);
+		for (int i= 0; i < this.getTaille(); ++i) {
+			if ((colonne) ? grille[indice][i] : grille[i][indice]) {
+				if (nbCase == 0) {
+					indiceDebut= i;
+					++nbCase;
+				}
+				else if (indiceDebut + nbCase == i)
+					++nbCase;
+				else {
+					listeBlocs.insererApres(new InfoBloc(indiceDebut, nbCase, nbCase));
+					indiceDebut= i;
+					nbCase= 0;
+				}
+			}
 		}
-		return monTableauLigne;
-	}
-	public InfoBloc[] getInfoBlocColonne(int colonne){
-		InfoBloc[] monTableauLigne= new InfoBloc[grille.length];
-		int compteur =1;
 		
-		for(int i=0;i<grille.length;i++){
-			monTableauLigne[i]= new InfoBloc(1,compteur,grille.length-compteur);
-		}
-		return monTableauLigne;
+		return (listeBlocs.estVide()) ? null : listeBlocs;
 	}
+	
 
 	/**
 	 * Mutateur du nom du dessin

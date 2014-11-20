@@ -9,12 +9,19 @@ public class InfoBloc {
 		this.nb = nb;
 		this.reste = reste;
 	}
-	public int getNbCasesRestantes(){
+	
+	public int getNbCasesRestantes() {
 		return reste;
 	}
+	
+	public void setNbCasesRestantes(int reste) {
+		this.reste = reste;
+	}
+	
 	public int getNbCases(){
 		return nb;
 	}
+	
 	public int getDebut(){
 		return debut;
 	}

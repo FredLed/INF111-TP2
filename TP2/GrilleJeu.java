@@ -2,8 +2,8 @@
 public class GrilleJeu {
 	
 	//Les tableaux d’indices du jeu
-    private ClListe<InfoBloc> tabBlocLignes= new ClListe<InfoBloc>();
-	private ClListe<InfoBloc> tabBlocColonnes= new ClListe<InfoBloc>();
+    private ClListe<InfoBloc>[] tabBlocLignes;
+	private ClListe<InfoBloc>[] tabBlocColonnes;
 	
 	private GrilleDessin dessin_orig;
 	private GrilleDessin dessin_cache;
@@ -16,10 +16,14 @@ public class GrilleJeu {
 	public GrilleJeu(GrilleDessin dessin){
 		//prendre la taille du dessin
 		this.taille = dessin.getTaille();
+		
 		//prendre le nombre de lignes dans le dessin
-		//this.tabBlocLignes = new ClListe[dessin.getLigne()];
+		this.tabBlocColonnes = new ClListe[this.taille];
+		
 		//prendre le nombre de colonnes dans le dessin
-		//this.tabBlocColonnes = new ClListe[dessin.getColonne()];
+		this.tabBlocLignes = new ClListe[this.taille];
+		
+		this.initialiserJeu();
 		
 		//si la taille est 5X5
 		if(taille == 5)
@@ -38,12 +42,18 @@ public class GrilleJeu {
 		
 	}
 	
+	// ANCIENNE VERSION
+
 	/**
 	 * Retourne un tableau de tous les blocs sur une ligne
 	 * @param ligne La ligne voulue
 	 * @return Un tableau des tous les blocs sur une ligne
 	 */
-	public InfoBloc[] getInfoBlocLigne(int ligne){
+	
+	
+
+	// Voir getInfoBlocs() dans GrilleDessin.java
+	/*public InfoBloc[] getInfoBlocLigne(int ligne){ 
 		//retourne le nombre de lignes du dessin
 		InfoBloc[] monTableauLigne = new InfoBloc[tabBlocLignes.getNbElements()];
 		for(int i =0;i<monTableauLigne.length;i++){
@@ -57,48 +67,103 @@ public class GrilleJeu {
 			
 		}
 		return monTableauLigne;
-	}
+	}*/
 	
 	/**
 	 * Retourne un tableau de tous les blocs sur une colonne
 	 * @param ligne La colonne voulue
 	 * @return Un tableau des tous les blocs sur une colonne
 	 */
-	public InfoBloc[] getInfoBlocColonne(int colonne){
+	/* public InfoBloc[] getInfoBlocColonne(int colonne){
 		//retourne le nombre de colonnes du dessin
 		InfoBloc[] monTableauColonne = new InfoBloc[taille];
 		
 		return monTableauColonne;
+	} */
+	
+	
+	// Nouvelle version
+	public void initialiserJeu() {
+		for (int i= 0; i < this.taille; ++i) {
+			tabBlocLignes[i] = dessin_orig.getInfoBlocs(i, false);
+			tabBlocColonnes[i] = dessin_orig.getInfoBlocs(i, true);
+		}
 	}
 	
-/**	Début
-	Pour toutes les lignes i de la grille
-	Initialiser la liste vide à la position i (t_liste)
-//C’est une boucle dans une boucle oui oui
-		Pour les colonnes j de 0 à maximum taille – 1						
-On doit compter le nombre de cases qui constitue un bloc (et oui une autre boucle) en commençant à la position contenue dans j
-S'il y a au moins une case coloriée, on crée un info_bloc qu’on insère dans la liste après la position courante et on déplace 
-l’itérateur de colonne du nombre de cases + 1 pour passer au bloc suivant potentiel
-Fin 
-Fin
-*/
-	public void initialiserJeu(){
-		
-		//initialise  la liste vide à la position i pour toutes les lignes
-		for (int i=0;i <= dessin_orig.getTaille();i++){
-			//tabBlocLignes = i;
-		}
-		
-		//créer un infobloc pour toutes cases coloriées pour toutes les colonnes
-		for (int j=0; j <= dessin_orig.getTaille() - 1;j++){
-			if (dessin_orig.estValide()){
-				//InfoBloc.InfoBloc();
+	public boolean listeBlocsEstVide(ClListe<InfoBloc> listeBlocs) {
+		// On considère que la liste est vide jusqu'à preuve du contraire.
+		boolean estVide= true;
+		if (listeBlocs != null) {
+			if (!listeBlocs.estVide()) {
+				try {
+					listeBlocs.setPositionCouranteDebut();
+			
+					for (int i= 0; i < listeBlocs.getNbElements(); ++i) {
+						if (listeBlocs.getElement().getNbCasesRestantes() != 0) 
+							estVide= false;
+						
+						listeBlocs.avancer();
+					}
+				}
+				catch(Exception e) { }
 			}
-		
 		}
+		
+		return estVide;
 	}
 	
-	public void ajusterJeu(int i, int j){
+	public boolean jeuEstSolutionne() {
+		// On considère que les listes sont vides jusqu'à preuve du contraire.
+		boolean lignesVide = true;
+		boolean colonnesVide= true;
+		
+		for (ClListe<InfoBloc> listeLigne : tabBlocLignes) {
+			if (!listeBlocsEstVide(listeLigne)) {
+				lignesVide= false;
+			}
+		}
+		
+		for (ClListe<InfoBloc> listeColonne : tabBlocColonnes) {
+			if (!listeBlocsEstVide(listeColonne)) {
+				colonnesVide= false;
+			}
+		}
+		
+		return lignesVide && colonnesVide;
+	}
+	
+	// Nouvelle version
+	public void ajusterJeu(int i, int j) {
+		try {
+			tabBlocLignes[i].setPositionCouranteDebut();
+			tabBlocColonnes[j].setPositionCouranteDebut();
+			InfoBloc blocCourant;
+			
+			while ((blocCourant= tabBlocLignes[i].getElement()).getDebut() != j) {
+				
+				if (j > blocCourant.getDebut() && j < blocCourant.getDebut() + blocCourant.getNbCases()) {
+					blocCourant.setNbCasesRestantes(blocCourant.getNbCasesRestantes()-1);
+					tabBlocLignes[i].setElement(blocCourant);
+				}
+				
+				tabBlocLignes[i].avancer();
+			}
+			
+			while ((blocCourant= tabBlocColonnes[j].getElement()).getDebut() != i) {
+				
+				if (i > blocCourant.getDebut() && i < blocCourant.getDebut() + blocCourant.getNbCases()) {
+					blocCourant.setNbCasesRestantes(blocCourant.getNbCasesRestantes()-1);
+					tabBlocLignes[j].setElement(blocCourant);
+				}
+				
+				tabBlocLignes[j].avancer();
+			}
+		}
+		catch (Exception e) { }
+		
+	}
+	
+	/*public void ajusterJeu(int i, int j){
 		
 		if(tabBlocLignes.estVide()){
 			//Mettre une message
@@ -118,6 +183,15 @@ Fin
 				}
 			}
 		}
+	}*/
+	
+	
+	// PROGRAMME PRINCIPALE
+	public static void main(String[] args) {
+		GrilleDessin dessin;
+		
+		// Lecture du fichier
+		
 	}
 }
 

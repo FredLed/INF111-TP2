@@ -67,7 +67,8 @@ public class UtilitaireFichier {
 	}	
 	
 	//désérialiser et lire le fichier .dsn
-	public static void lire(File file,JPanel panel) {
+	public static GrilleDessin lire(File file,JPanel panel) {
+		GrilleDessin lecture= null;
 		
 		//ouvrir une connection au fichier sélectionné
 		try {
@@ -78,17 +79,17 @@ public class UtilitaireFichier {
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			
 			//lire le fichier
-			GrilleDessin lecture = (GrilleDessin) in.readObject();
+			lecture = (GrilleDessin) in.readObject();
 			
 			//fermer
 			in.close();
 			
-			//affichier ce qui a été lu
-			System.out.println("Information: " + lecture);
-			JOptionPane.showMessageDialog(panel,lecture,"Erreur",
-													JOptionPane.ERROR_MESSAGE);
+			// affichier ce qui a été lu
+			// System.out.println("Information: " + lecture);
 		}
 		catch(Exception e) { }
+		
+		return lecture;
 		
 	}
 }

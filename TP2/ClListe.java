@@ -157,8 +157,12 @@ public class ClListe<T> {
 		return positionCourante.valeur;
 	}
 	
+	public void setElement(T valeur) {
+		positionCourante.valeur = valeur;
+	}
+	
 	/**
-	 *Permet de mettre la position courante aux suivant.
+	 *Permet de mettre la position courante au suivant.
 	 * 
 	 */
 	public void avancer() throws Exception {
@@ -173,7 +177,7 @@ public class ClListe<T> {
 	}
 	
 	/**
-	 *Permet de mettre la position courante aux précédent.
+	 *Permet de mettre la position courante au précédent.
 	 * 
 	 */
 	public void reculer() throws Exception {
