@@ -67,8 +67,12 @@ public class UtilitaireFichier {
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			
 			//lire le fichier
-			lecture = (GrilleDessin) in.readObject();
-			
+			try{
+				lecture = (GrilleDessin) in.readObject();
+			}catch(ClassNotFoundException c)
+			{
+				c.printStackTrace();
+			}
 			//fermer
 			in.close();
 			fileIn.close();
