@@ -70,7 +70,8 @@ public class GrilleDessin implements Serializable {
 			}
 		}
 		
-		return (listeBlocs.estVide()) ? null : listeBlocs;
+		// return (listeBlocs.estVide()) ? null : listeBlocs;
+		return listeBlocs;
 	}
 	
 

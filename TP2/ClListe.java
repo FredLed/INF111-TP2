@@ -22,6 +22,18 @@ public class ClListe<T> {
 		positionCourante = null;
 	}
 	
+	public ClListe(ClListe<T> liste) {
+		try {
+			if (liste != null) {
+				this.tete = liste.tete;
+				this.fin = liste.fin;
+				this.nbElements = liste.nbElements;
+				this.positionCourante = liste.positionCourante;
+			}
+		}
+		catch (Exception e) { }
+	}
+	
 	public boolean estVide() {
 		return nbElements == 0;
 	}

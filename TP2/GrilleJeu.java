@@ -60,8 +60,8 @@ public class GrilleJeu {
 	
 	public void initialiserJeu() {
 		for (int i= 0; i < this.taille; ++i) {
-			tabBlocLignes[i] = dessin_orig.getInfoBlocs(i, false);
-			tabBlocColonnes[i] = dessin_orig.getInfoBlocs(i, true);
+			tabBlocLignes[i] = new ClListe<InfoBloc>(dessin_orig.getInfoBlocs(i, false));
+			tabBlocColonnes[i] = new ClListe<InfoBloc>(dessin_orig.getInfoBlocs(i, true));
 		}
 	}
 	
@@ -167,7 +167,7 @@ public class GrilleJeu {
 														1, dessin.getTaille());
 						
 						if (noColonne != 0) {
-							if (dessin.estColorie(noLigne, noColonne))  {
+							if (dessin.estColorie(noLigne, noColonne)) {
 								jeu.ajusterJeu(noLigne, noColonne);
 							}
 							else {
