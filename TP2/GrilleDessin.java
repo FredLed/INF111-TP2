@@ -17,6 +17,14 @@ public class GrilleDessin implements Serializable {
 
 	
 	
+	/**
+	 * 
+	 */
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4892807857839581146L;
 	private boolean [][] grille;
 	private String nom;
 	
@@ -85,6 +93,12 @@ public class GrilleDessin implements Serializable {
 		//On crée simplement la grille
 		grille = new boolean[taille][taille];
 		this.nom = nom;
+	}
+	public GrilleDessin(GrilleDessin dessin){
+
+		//On crée simplement la grille
+		grille = dessin.grille;
+		this.nom = dessin.getNom();
 	}
 	
 	/**
@@ -221,6 +235,16 @@ public class GrilleDessin implements Serializable {
 	private boolean VerifierCaseSelon(boolean vérifierSelonColonne, 
 										boolean[][] grille, int i, int j) {
 		return (vérifierSelonColonne) ? grille[i][j]: grille[j][i];
+	}
+
+	public InfoBloc[] getInfoBlocLigne(int ligne) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public InfoBloc[] getInfoBlocColonne(int i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

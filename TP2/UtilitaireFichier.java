@@ -69,7 +69,7 @@ public class UtilitaireFichier {
 			//lire le fichier
 			try{
 				lecture = (GrilleDessin) in.readObject();
-			}catch(ClassNotFoundException c)
+			}catch(Exception c)
 			{
 				c.printStackTrace();
 			}
