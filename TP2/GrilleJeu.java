@@ -158,6 +158,11 @@ public class GrilleJeu {
 		dessin = UtilitaireFichier.lire(i, p);
 		if(dessin != null){
 		//	dessin_orig=dessin.getDessin();
+			if(dessin.estValide()){
+				
+			}else{
+				System.out.println("Le dessin n'est pas valide.");
+			}
 		}
 		
 		
