@@ -71,6 +71,7 @@ public class UtilitaireFichier {
 			
 			//fermer
 			in.close();
+			fileIn.close();
 			
 			// affichier ce qui a été lu
 			// System.out.println("Information: " + lecture);
