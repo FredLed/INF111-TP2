@@ -236,12 +236,84 @@ public class GrilleDessin implements Serializable {
 
 	public InfoBloc[] getInfoBlocLigne(int ligne) {
 		// TODO Auto-generated method stub
-		return null;
+		int nbCase = 0;
+		int indiceDebut = 0;
+		ClListe<InfoBloc> listeBlocs = new ClListe<InfoBloc>();
+		
+		for (int i= 0; i < this.getTaille(); ++i) {
+			if ( grille[ligne][i]) {
+				if (nbCase == 0) {
+					indiceDebut= i;
+					++nbCase;
+				}
+				else if (indiceDebut + nbCase == i)
+					++nbCase;
+				else {
+					listeBlocs.insererApres(new InfoBloc(indiceDebut, nbCase, nbCase));
+					indiceDebut= i;
+					nbCase= 0;
+				}
+			}
+		}
+		InfoBloc[] tab = new InfoBloc[listeBlocs.getNbElements()];
+		try {
+			listeBlocs.setPositionCouranteDebut();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		for(int i=0;i<tab.length;i++){
+			try {
+				tab[i]=listeBlocs.getElement();
+				listeBlocs.avancer();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return tab;
 	}
 
-	public InfoBloc[] getInfoBlocColonne(int i) {
+	public InfoBloc[] getInfoBlocColonne(int colonne) {
 		// TODO Auto-generated method stub
-		return null;
+		int nbCase = 0;
+		int indiceDebut = 0;
+		ClListe<InfoBloc> listeBlocs = new ClListe<InfoBloc>();
+		
+		for (int i= 0; i < this.getTaille(); ++i) {
+			if ( grille[i][colonne]) {
+				if (nbCase == 0) {
+					indiceDebut= i;
+					++nbCase;
+				}
+				else if (indiceDebut + nbCase == i)
+					++nbCase;
+				else {
+					listeBlocs.insererApres(new InfoBloc(indiceDebut, nbCase, nbCase));
+					indiceDebut= i;
+					nbCase= 0;
+				}
+			}
+		}
+		InfoBloc[] tab = new InfoBloc[listeBlocs.getNbElements()];
+		try {
+			listeBlocs.setPositionCouranteDebut();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		for(int i=0;i<tab.length;i++){
+			try {
+				tab[i]=listeBlocs.getElement();
+				listeBlocs.avancer();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return tab;
 	}
 	
 }
