@@ -158,7 +158,6 @@ public class UtilitaireAffichageConsole {
 					}
 					
 				}
-
 				else
 					System.out.print("   ");			 
 			}

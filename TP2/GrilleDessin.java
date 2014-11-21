@@ -33,6 +33,10 @@ public class GrilleDessin implements Serializable {
 		return nom;
 	}
 	
+	/**
+	 * Accessur du Dessin
+	 * @return Le Dessin
+	 */
 	public GrilleDessin getDessin(){
 		return this;
 	}
@@ -234,12 +238,14 @@ public class GrilleDessin implements Serializable {
 		return (vérifierSelonColonne) ? grille[i][j]: grille[j][i];
 	}
 
+	
 	public InfoBloc[] getInfoBlocLigne(int ligne) {
-		// TODO Auto-generated method stub
+
 		int nbCase = 0;
 		int indiceDebut = 0;
 		ClListe<InfoBloc> listeBlocs = new ClListe<InfoBloc>();
 		
+		// Boucle qui permet de construire notre listeBlocs
 		for (int i= 0; i < this.getTaille(); ++i) {
 			if ( grille[ligne][i]) {
 				if (nbCase == 0) {
@@ -249,20 +255,22 @@ public class GrilleDessin implements Serializable {
 				else if (indiceDebut + nbCase == i)
 					++nbCase;
 				else {
-					listeBlocs.insererApres(new InfoBloc(indiceDebut, nbCase, nbCase));
+					listeBlocs.insererApres(new InfoBloc(indiceDebut, 
+							nbCase, nbCase));
 					indiceDebut= i;
 					nbCase= 0;
 				}
 			}
 		}
+		
+		// On mets le tableau au début
 		InfoBloc[] tab = new InfoBloc[listeBlocs.getNbElements()];
 		try {
 			listeBlocs.setPositionCouranteDebut();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		//création du tableau statstique
 		for(int i=0;i<tab.length;i++){
 			try {
 				tab[i]=listeBlocs.getElement();
@@ -276,10 +284,11 @@ public class GrilleDessin implements Serializable {
 	}
 
 	public InfoBloc[] getInfoBlocColonne(int colonne) {
-		// TODO Auto-generated method stub
+
 		int nbCase = 0;
 		int indiceDebut = 0;
 		ClListe<InfoBloc> listeBlocs = new ClListe<InfoBloc>();
+		// Boucle qui permet de construire notre listeBlocs
 		
 		for (int i= 0; i < this.getTaille(); ++i) {
 			if ( grille[i][colonne]) {
@@ -296,6 +305,7 @@ public class GrilleDessin implements Serializable {
 				}
 			}
 		}
+		//création du tableau statstique
 		InfoBloc[] tab = new InfoBloc[listeBlocs.getNbElements()];
 		try {
 			listeBlocs.setPositionCouranteDebut();
@@ -315,5 +325,4 @@ public class GrilleDessin implements Serializable {
 		}
 		return tab;
 	}
-	
 }

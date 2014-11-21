@@ -138,12 +138,9 @@ public class GrilleJeu {
 		
 	}
 
-	
-	
 	// PROGRAMME PRINCIPALE
 	public static void main(String[] args) {
 		GrilleDessin dessin=null;
-		
 		// Lecture du fichier
 		JFrame j = new JFrame();
 		JPanel p = new JPanel();

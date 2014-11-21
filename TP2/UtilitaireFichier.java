@@ -1,7 +1,6 @@
 import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 
 /**
  * Une classe contenant les sous-programmes pour afficher
@@ -22,7 +21,6 @@ public class UtilitaireFichier {
 		
 		//créer un nouveau objet du file chooser
 		final JFileChooser fc = new JFileChooser();
-		boolean bonfichier = false;
 		File file=null;
 		
 			//répondre quand on clique sur la souris
