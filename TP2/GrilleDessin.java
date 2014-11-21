@@ -13,10 +13,7 @@ import java.io.Serializable;
  *
  */
 
-public class GrilleDessin implements Serializable {
-
-	
-	
+public class GrilleDessin implements Serializable {	
 	/**
 	 * 
 	 */

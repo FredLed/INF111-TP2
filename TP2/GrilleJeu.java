@@ -55,36 +55,11 @@ public class GrilleJeu {
 	 */
 	
 	
-
-	// Voir getInfoBlocs() dans GrilleDessin.java
-	/*public InfoBloc[] getInfoBlocLigne(int ligne){ 
-		Integer[] a = new Integer[2];
-		//retourne le nombre de lignes du dessin
-		InfoBloc[] monTableauLigne = new InfoBloc[tabBlocLignes.getNbElements()];
-		for(int i =0;i<monTableauLigne.length;i++){
-			int debut;
-			int NbCases;
-			int NbRestant;
-			
-			for(int j=0;j<monTableauLigne.length;j++){
-				
-			}
-			
-		}
-		return monTableauLigne;
-	}*/
-	
 	/**
 	 * Retourne un tableau de tous les blocs sur une colonne
 	 * @param ligne La colonne voulue
 	 * @return Un tableau des tous les blocs sur une colonne
 	 */
-	/* public InfoBloc[] getInfoBlocColonne(int colonne){
-		//retourne le nombre de colonnes du dessin
-		InfoBloc[] monTableauColonne = new InfoBloc[taille];
-		
-		return monTableauColonne;
-	} */
 	
 	
 	// Nouvelle version
@@ -167,28 +142,7 @@ public class GrilleJeu {
 		catch (Exception e) { }
 		
 	}
-	
-	/*public void ajusterJeu(int i, int j){
-		
-		if(tabBlocLignes.estVide()){
-			//Mettre une message
-		}else{
-			try {
-				tabBlocLignes.setPositionCouranteDebut();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			for(int z =0;z<i;z++){
-				try {
-					tabBlocLignes.avancer();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	}*/
+
 	
 	
 	// PROGRAMME PRINCIPALE
@@ -202,8 +156,9 @@ public class GrilleJeu {
 		File i = UtilitaireFichier.JFileChooser(p);
 		i=UtilitaireFichier.accept(i);
 		dessin = UtilitaireFichier.lire(i, p);
-		if(dessin!=null)
-		System.out.println("alalalal");
+		if(dessin != null){
+		//	dessin_orig=dessin.getDessin();
+		}
 		
 		
 	}
