@@ -17,7 +17,7 @@ public class GrilleJeu {
 	private int taille;
 
 	//constructeur
-	public GrilleJeu(GrilleDessin dessin){
+	public GrilleJeu(GrilleDessin dessin) {
 		//prendre la taille du dessin
 		this.taille = dessin.getTaille();
 		
@@ -46,23 +46,18 @@ public class GrilleJeu {
 		
 	}
 	
-	// ANCIENNE VERSION
-
-	/**
-	 * Retourne un tableau de tous les blocs sur une ligne
-	 * @param ligne La ligne voulue
-	 * @return Un tableau des tous les blocs sur une ligne
-	 */
+	public int getTaille() {
+		return this.taille;
+	}
 	
+	public void perdreVie() {
+		--this.nbVies;
+	}
 	
-	/**
-	 * Retourne un tableau de tous les blocs sur une colonne
-	 * @param ligne La colonne voulue
-	 * @return Un tableau des tous les blocs sur une colonne
-	 */
+	public boolean joueurMort() {
+		return this.nbVies <= 0;
+	}
 	
-	
-	// Nouvelle version
 	public void initialiserJeu() {
 		for (int i= 0; i < this.taille; ++i) {
 			tabBlocLignes[i] = dessin_orig.getInfoBlocs(i, false);
@@ -152,20 +147,43 @@ public class GrilleJeu {
 		// Lecture du fichier
 		JFrame j = new JFrame();
 		JPanel p = new JPanel();
+		
 		j.setContentPane(p);
 		File i = UtilitaireFichier.JFileChooser(p);
 		i=UtilitaireFichier.accept(i);
 		dessin = UtilitaireFichier.lire(i, p);
-		if(dessin != null){
+		
+		GrilleJeu jeu = new GrilleJeu(dessin);
+		
+		if(dessin != null) {
+			int noLigne = 0;
 		//	dessin_orig=dessin.getDessin();
-			if(dessin.estValide()){
-				
-			}else{
-				System.out.println("Le dessin n'est pas valide.");
+			if(dessin.estValide()) {
+				do {
+					UtilitaireAffichageConsole.afficherGrilleJeu(dessin);
+					
+					noLigne = UtilitaireValidation.lireInt("Veuillez entrer le numéro de la ligne : " ,
+													1, dessin.getTaille());
+					
+					if (noLigne != 0) {
+						int noColonne = UtilitaireValidation.lireInt("Veuillez entrer le numéro de la colonne : ",
+														1, dessin.getTaille());
+						
+						if (noColonne != 0) {
+							if (dessin.estColorie(noLigne, noColonne))  {
+								jeu.ajusterJeu(noLigne, noColonne);
+							}
+							else {
+								jeu.perdreVie();
+							}
+						}
+					}
+				} while (noLigne != 0 || jeu.joueurMort() || jeu.jeuEstSolutionne());		
 			}
 		}
-		
-		
+		else {
+				System.out.println("Le dessin n'est pas valide.");
+		}
 	}
 }
 
