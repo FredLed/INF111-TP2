@@ -69,7 +69,6 @@ public class GrilleDessin implements Serializable {
 				}
 			}
 		}
-		
 		// return (listeBlocs.estVide()) ? null : listeBlocs;
 		return listeBlocs;
 	}
@@ -272,7 +271,7 @@ public class GrilleDessin implements Serializable {
 			e1.printStackTrace();
 		}
 		//création du tableau statstique
-		for(int i=0;i<tab.length;i++){
+		for(int i=0;i<tab.length-1;i++){
 			try {
 				tab[i]=listeBlocs.getElement();
 				listeBlocs.avancer();
