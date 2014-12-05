@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -56,12 +57,6 @@ public class PanneauPrincipal extends JPanel implements Observer {
 	
 		initialiserComposants();
 	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	private void initialiserComposants() {
 
@@ -83,6 +78,38 @@ public class PanneauPrincipal extends JPanel implements Observer {
 		//On actualise le GUI
 		validate();
 		repaint();
+	}
+	
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		
+		System.out.println("yo");
+		
+		initialiserComposants();
+		//Si le jeu est solutionné on félicite le joueur
+		if(jeu.estSolutionne()){
+	        JOptionPane.showMessageDialog(this.getParent(), 
+	  	          "Vous êtes le meilleur! Vous avez gagnez!!! Yes sir Miller!");
+
+			//On réinitialise le jeu
+			this.reInitialiserJeu();
+		}
+		
+		if(jeu.getNbVies()==0){
+				        JOptionPane.showMessageDialog(this.getParent(), 
+	  	          "Vous êtes pourris! Vous avez perdu au pire jeu de la planète!");
+
+			//On réinitialise le jeu
+			this.reInitialiserJeu();
+		}
+		
+
+	}
+	
+	private void reInitialiserJeu(){
+		jeu = new GrilleJeu(jeu.getDessinOrig());
+		jeu.addObserver(this);
+		initialiserComposants();
 	}
 	
 }

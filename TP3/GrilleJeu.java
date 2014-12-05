@@ -66,8 +66,8 @@ public class GrilleJeu extends Observable {
 		//retient le dessin reçu
 		this.dessinOrig = dessin;
 		
-		this.dessinMontre.addObserver(ecouteurDessinMontre);
-		this.dessinOrig.addObserver(ecouteurDessinOrig);
+		this.dessinMontre.addObserver((ecouteurDessinMontre = new EcouteurDessinMontre()));
+		this.dessinOrig.addObserver((ecouteurDessinOrig = new EcouteurDessinOrig()));
 
 		nbVies = taille/2;
 
