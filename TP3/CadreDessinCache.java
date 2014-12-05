@@ -110,24 +110,26 @@ public class CadreDessinCache extends Observable implements Runnable {
 		
 		//évite la répétition de code
 		private void setMode(int nouveauMode) {
-			mode = nouveauMode;
-			if(nouveauMode == MODE_CREATION)
-			{
-				barre.barreCreation();
-				//barre.removeAll();
-				barre.repaint();
+			if (mode != nouveauMode) {
+				mode = nouveauMode;
+				if(nouveauMode == MODE_CREATION)
+				{
+					barre.barreCreation();
+					//barre.removeAll();
+					barre.repaint();
+				}
+				else
+				{
+					// On demande à l'utilisateur s'il veut saauvegarder // TODO
+					//okAnnuler("Voulez-vous enregistrer avant de quitter le mode céation?");
+					barre.barreJeu();
+					//barre.removeAll();
+					barre.repaint();
+				}
+				
+				setChanged();
+				notifyObservers();
 			}
-			else
-			{
-				// On demande à l'utilisateur s'il veut saauvegarder // TODO
-				//okAnnuler("Voulez-vous enregistrer avant de quitter le mode céation?");
-				barre.barreJeu();
-				//barre.removeAll();
-				barre.repaint();
-			}
-			
-			setChanged();
-			notifyObservers();
 		}
 		
 		

@@ -110,6 +110,8 @@ public class BarreMenu extends JMenuBar implements Observer {
 	    	//Si le joueur clique sur Fichier/Ouvrir,
 	    	//on récupère le dessin ouvert, on le met dans le layout
 	    	//on l'affiche à l'écran
+	    	  
+	    	
 	        GrilleDessin dessinTmp = UtilitaireFichier.recupererDessin();
 	        if (dessinTmp != null)
 	        {
@@ -117,8 +119,14 @@ public class BarreMenu extends JMenuBar implements Observer {
 	        	GrilleJeu grilleJeu = new GrilleJeu(dessinTmp);
 	        	panneuDessin = new PanneauDessin(grilleJeu); 
 	        	panneauPrincipal.add(panneuDessin,BorderLayout.CENTER);
-	        	
 	        }
+	        else {
+	        	panneauPrincipal.initialiseJeu(panneauPrincipal.getDessin());
+	        	GrilleJeu grilleJeu = new GrilleJeu(panneauPrincipal.getDessin());
+	        	panneuDessin = new PanneauDessin(grilleJeu); 
+	        	panneauPrincipal.add(panneuDessin,BorderLayout.CENTER);
+	        }
+	        	
 	      }
 	    });
 	    
@@ -201,26 +209,31 @@ public class BarreMenu extends JMenuBar implements Observer {
 		int modeCourant = CadreDessinCache.getMode();
 	    GrilleDessin dessin = monDessinCache.getPanneauPrincipal().getDessin();
 	    PanneauPrincipal monPanneau = monDessinCache.getPanneauPrincipal();
-		
-	    //removeAll();
-	    
-	    if(dessin != null) {
-	    	UtilitaireFichier.sauvegarderGrilleDessin(dessin);
-	    }
-	    else
-	    {
-	    	dessin = new GrilleDessin(MIN_TAILLE, "Defaut");
-	    }
 	    
 		if (modeCourant == CadreDessinCache.MODE_CREATION) {
+			if (dessin == null) 
+				dessin = new GrilleDessin(MIN_TAILLE, "Defaut");
+			
 			monPanneau.initialiseJeu(dessin);
 			barreCreation();
 		}
 		else {
+			if (dessin != null) {
+				int reponse= JOptionPane.showConfirmDialog(monPanneau,
+									"Voulez-vous enregistrer le dessin en cours?",
+									"Confirmation",
+									JOptionPane.YES_NO_OPTION);
+				
+				if (reponse == JOptionPane.YES_OPTION) {
+					UtilitaireFichier.sauvegarderGrilleDessin(dessin);
+				}
+		    }
+			
 			menuItemOuvrir.doClick(100);
 			barreJeu();
 		}
 
+		validate();
 		repaint();
 	}
 }

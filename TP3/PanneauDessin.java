@@ -78,7 +78,7 @@ public class PanneauDessin extends JPanel {
 			this.colonne = colonne2;
 			this.etat = etat2;
 			
-			setBackground(etat2?Color.BLACK:Color.WHITE);
+			setBackground(etat2 ? Color.BLACK: Color.WHITE);
 				
 		this.addActionListener(new MonEcouteurBouton());
 		
@@ -109,11 +109,14 @@ public class PanneauDessin extends JPanel {
 				//Si on est en mode jeu
 				else
 				{
-					//Si la case original é ces coordonnées est colorié
-					//et que la source est blanche
+					//Si la case original é ses coordonn�es est colori�
+					// et que la source est blanche
 					if(jeu.getDessinOrig().estColorie(ligneSrc, colonneSrc) 
 							&& source.getEtat() == false)
+					{
 						source.switchEtat(jeu.getDessinOrig().estColorie(ligneSrc, colonneSrc));
+						jeu.getDessinMontre().colorieCase(ligneSrc, colonneSrc, true);	
+					}
 					//Si la case original est vide et la source est blanche
 					else if(source.getEtat() == false)
 						jeu.decrementeVie();

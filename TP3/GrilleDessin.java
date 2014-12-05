@@ -71,7 +71,6 @@ public class GrilleDessin extends Observable implements Serializable{
 	 * @return Si la case es colorié ou non
 	 */
 	boolean estColorie(int i, int j){
-		
 		return grille[i][j];
 	}
 	
@@ -83,10 +82,9 @@ public class GrilleDessin extends Observable implements Serializable{
 	 * @param etat L'état de la case après l'appel
 	 */
 	void colorieCase(int i, int j, boolean etat){
-		
 		grille[i][j] = etat;
         setChanged();
-        notifyObservers(new int[] {i, j});
+        notifyObservers(new Rectangle(i,j));
 	}
 	
 	/**
