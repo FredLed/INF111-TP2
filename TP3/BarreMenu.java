@@ -197,18 +197,21 @@ public class BarreMenu extends JMenuBar implements Observer {
 	@Override
 	public void update(Observable observateur, Object arg1) {
 		// TODO Auto-generated method stub
-		
 		CadreDessinCache monDessinCache = (CadreDessinCache)observateur;
 		int modeCourant = CadreDessinCache.getMode();
-		
+	    GrilleDessin dessin = UtilitaireFichier.recupererDessin();
+	    PanneauPrincipal monPanneau = monDessinCache.getPanneauPrincipal();
+	    if(dessin!=null){
+	    	UtilitaireFichier.sauvegarderGrilleDessin(dessin);
+	    }
 		if(modeCourant==0){
-			
+			menuItemOuvrir.doClick(100);
 			barreCreation();
 		}else{
-			
+			monPanneau.initialiseJeu(dessin);
 			barreJeu();
 		}
-		 GrilleDessin dessin = UtilitaireFichier.recupererDessin();
-		 PanneauPrincipal monPanneau = monDessinCache.getPanneauPrincipal();
+		removeAll();
+		repaint();
 	}
 }
