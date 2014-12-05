@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  * @author pbelisle
  *
  */
-public class PanneauPrincipal  extends JPanel {
+public class PanneauPrincipal extends JPanel implements Observer {
 
 	
 	private GrilleJeu jeu;
@@ -52,11 +52,17 @@ public class PanneauPrincipal  extends JPanel {
 		//Important de ne pas mettre dans initialiserComposants
 		//juste une fois dans le constructeur
 		jeu = new GrilleJeu(dessin);
-		
+		jeu.addObserver(this);
 	
 		initialiserComposants();
 	}
 
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private void initialiserComposants() {
 
 		//On s'assure que le panneau est vide.

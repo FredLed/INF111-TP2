@@ -505,4 +505,31 @@ public class GrilleJeu extends Observable {
 		return solutionneEnLigne && solutionneEnCol;
 
 	}
+	
+	private class EcouteurDessinOrig implements Observer {
+		
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			//Procédure locale qui crée les tableaux d’indices
+			//à partir du dessin original du jeu
+			initialiserJeu();
+			
+			//La grille de jeu est observable
+			setChanged();
+			notifyObservers();
+		}
+	}
+	
+	private class EcouteurDessinMontre implements Observer{
+		
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			if (arg1 != null) {
+				ajusterLignes((int)((Object[])arg1)[0], (int)((Object[])arg1)[1]);
+				setChanged();
+				notifyObservers();
+			} 
+		}
+	}
+
 }
