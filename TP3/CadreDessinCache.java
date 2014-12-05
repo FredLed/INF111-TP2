@@ -20,7 +20,7 @@ import javax.swing.JRadioButton;
  * @author pbelisle
  *
  */
-public class CadreDessinCache implements Runnable {
+public class CadreDessinCache extends Observable implements Runnable {
 	
     //Les modes possibles de l'application
 	public static final int MODE_JOUE = 0;
@@ -59,6 +59,7 @@ public class CadreDessinCache implements Runnable {
 		//L'instance de la barre dem enu 
 		barre = new BarreMenu(panneauPrincipal);
 
+		this.addObserver(barre);
 		//configuration de base (plein écran, fermeture sur X)
 		cadreJeu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cadreJeu.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -74,7 +75,6 @@ public class CadreDessinCache implements Runnable {
 		cadreJeu.setJMenuBar(barre);
 		cadreJeu.setVisible(true);
 		
-	
 	}
 
 	/**
@@ -126,6 +126,9 @@ public class CadreDessinCache implements Runnable {
 				barre.removeAll();
 				barre.repaint();
 			}
+			
+			setChanged();
+			notifyObservers();
 		}
 		
 		

@@ -23,7 +23,7 @@ import java.util.Observable;
  * @version A14
  *
  */
-public class GrilleDessin implements Serializable{
+public class GrilleDessin extends Observable implements Serializable{
 
 	//Tableau 2D qui contiendra les booléens
 	//qui informent que la case est coloriée ou non
@@ -46,6 +46,8 @@ public class GrilleDessin implements Serializable{
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+        setChanged();
+        notifyObservers();
 	}
 
 	/**
@@ -83,6 +85,8 @@ public class GrilleDessin implements Serializable{
 	void colorieCase(int i, int j, boolean etat){
 		
 		grille[i][j] = etat;
+        setChanged();
+        notifyObservers(new int[] {i, j});
 	}
 	
 	/**

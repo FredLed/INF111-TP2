@@ -32,7 +32,7 @@ import javax.swing.SwingUtilities;
  * @author pbelisle
  * 
  */
-public class BarreMenu extends JMenuBar implements Observer {
+public class BarreMenu extends JMenuBar {
 
 	/*test*/
 	PanneauDessin panneuDessin;
@@ -193,11 +193,4 @@ public class BarreMenu extends JMenuBar implements Observer {
 	      System.exit(0);
 	    }
 	  }
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		int modeCourant=CadreDessinCache.getMode();
-		//GrilleDessin monDessin=
-	}
 }
