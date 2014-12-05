@@ -32,7 +32,7 @@ import javax.swing.SwingUtilities;
  * @author pbelisle
  * 
  */
-public class BarreMenu extends JMenuBar {
+public class BarreMenu extends JMenuBar implements Observer {
 
 	/*test*/
 	PanneauDessin panneuDessin;
@@ -193,4 +193,10 @@ public class BarreMenu extends JMenuBar {
 	      System.exit(0);
 	    }
 	  }
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 }
