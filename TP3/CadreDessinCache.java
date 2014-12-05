@@ -114,7 +114,7 @@ public class CadreDessinCache extends Observable implements Runnable {
 			if(nouveauMode == MODE_CREATION)
 			{
 				barre.barreCreation();
-				barre.removeAll();
+				//barre.removeAll();
 				barre.repaint();
 			}
 			else
@@ -122,7 +122,7 @@ public class CadreDessinCache extends Observable implements Runnable {
 				// On demande à l'utilisateur s'il veut saauvegarder // TODO
 				//okAnnuler("Voulez-vous enregistrer avant de quitter le mode céation?");
 				barre.barreJeu();
-				barre.removeAll();
+				//barre.removeAll();
 				barre.repaint();
 			}
 			
