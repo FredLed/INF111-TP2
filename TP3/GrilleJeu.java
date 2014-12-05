@@ -44,6 +44,9 @@ public class GrilleJeu extends Observable {
 	private int taille;
 
 	private int nbVies;
+	
+	private EcouteurDessinMontre ecouteurDessinMontre;
+	private EcouteurDessinOrig ecouteurDessinOrig;
 
 	/**
 	 * Crée une représentation mémoire du dessin reçu
@@ -62,7 +65,9 @@ public class GrilleJeu extends Observable {
 
 		//retient le dessin reçu
 		this.dessinOrig = dessin;
-
+		
+		this.dessinMontre.addObserver(ecouteurDessinMontre);
+		this.dessinOrig.addObserver(ecouteurDessinOrig);
 
 		nbVies = taille/2;
 
