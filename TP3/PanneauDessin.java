@@ -102,8 +102,11 @@ public class PanneauDessin extends JPanel {
 						jeu.getDessinOrig().colorieCase(ligneSrc, colonneSrc, false);
 					}
 					else
+					{
 						setBackground(Color.BLACK);
 						jeu.getDessinOrig().colorieCase(ligneSrc, colonneSrc, true);
+					}
+
 					
 				}
 				

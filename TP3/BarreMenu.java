@@ -211,10 +211,12 @@ public class BarreMenu extends JMenuBar implements Observer {
 	    PanneauPrincipal monPanneau = monDessinCache.getPanneauPrincipal();
 	    
 		if (modeCourant == CadreDessinCache.MODE_CREATION) {
-			if (dessin == null) 
-				dessin = new GrilleDessin(MIN_TAILLE, "Defaut");
-			
-			monPanneau.initialiseJeu(dessin);
+			if (dessin != null) 
+			{
+				//dessin = new GrilleDessin(MIN_TAILLE, "Defaut");
+				monPanneau.initialiseJeu(dessin);
+			}
+			monPanneau.removeAll();
 			barreCreation();
 		}
 		else {

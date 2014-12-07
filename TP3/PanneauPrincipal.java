@@ -79,14 +79,15 @@ public class PanneauPrincipal extends JPanel implements Observer {
 		this.add(new PanneauDessin(jeu),
 			BorderLayout.EAST);
 		
-		//Le panneau de vie ï¿½ droite
-		PanneauVie panneauVie = new PanneauVie(jeu);
-		this.add(panneauVie,
-				BorderLayout.EAST);
-		
-		panneauVie.setBackground(Color.yellow);
-		panneauVie.setSize(100, 50);
-		
+		if(CadreDessinCache.getMode() == CadreDessinCache.MODE_JOUE)
+		{ 	
+			//Le panneau de vie ï¿½ droite
+			PanneauVie panneauVie = new PanneauVie(jeu);
+			this.add(panneauVie,BorderLayout.EAST);
+			
+			panneauVie.setBackground(Color.yellow);
+			panneauVie.setSize(100, 50);
+		}
 		
 		
 		
@@ -117,6 +118,7 @@ public class PanneauPrincipal extends JPanel implements Observer {
 	
 				//On réinitialise le jeu
 				this.reInitialiserJeu();
+				
 			}
 		}
 		
@@ -127,6 +129,8 @@ public class PanneauPrincipal extends JPanel implements Observer {
 		jeu = new GrilleJeu(jeu.getDessinOrig());
 		jeu.addObserver(this);
 		initialiserComposants();
+		removeAll();
+		repaint();
 	}
 	
 }
