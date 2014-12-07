@@ -83,21 +83,26 @@ public class PanneauPrincipal extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		initialiserComposants();
-		//Si le jeu est solutionné on félicite le joueur
-		if(jeu.estSolutionne()) {
-	        JOptionPane.showMessageDialog(this.getParent(), 
-	  	          "Vous �tes le meilleur! Vous avez gagnez!!! Yes sir Miller!");
-
-			//On réinitialise le jeu
-			this.reInitialiserJeu();
-		}
 		
-		if (jeu.getNbVies() == 0) { 
-			JOptionPane.showMessageDialog(this.getParent(), 
-	  	       "Vous �tes pourris! Vous avez perdu au pire jeu de la plan�te!");
-
-			//On réinitialise le jeu
-			this.reInitialiserJeu();
+		//Les messages sont affichés seulement dans le mode JOUE
+		if(CadreDessinCache.getMode() == CadreDessinCache.MODE_JOUE)
+		{
+			//Si le jeu est solutionné on félicite le joueur
+			if(jeu.estSolutionne()) {
+		        JOptionPane.showMessageDialog(this.getParent(), 
+		  	          "Vous �tes le meilleur! Vous avez gagnez!!! Yes sir Miller!");
+	
+				//On réinitialise le jeu
+				this.reInitialiserJeu();
+			}
+			
+			if (jeu.getNbVies() == 0) { 
+				JOptionPane.showMessageDialog(this.getParent(), 
+		  	       "Vous �tes pourris! Vous avez perdu au pire jeu de la plan�te!");
+	
+				//On réinitialise le jeu
+				this.reInitialiserJeu();
+			}
 		}
 		
 
