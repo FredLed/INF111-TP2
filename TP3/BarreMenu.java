@@ -218,7 +218,7 @@ public class BarreMenu extends JMenuBar implements Observer {
 			barreCreation();
 		}
 		else {
-			if (dessin != null) {
+			if (dessin != null && this.sauvegardeEffectuee == false) {
 				int reponse= JOptionPane.showConfirmDialog(monPanneau,
 									"Voulez-vous enregistrer le dessin en cours?",
 									"Confirmation",
