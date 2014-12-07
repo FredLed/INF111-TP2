@@ -531,6 +531,7 @@ public class GrilleJeu extends Observable {
 		public void update(Observable arg0, Object arg1) {
 			if (arg1 != null) {
 				ajusterLignes(((Rectangle)arg1).width, ((Rectangle)arg1).height);
+				ajusterColonnes(((Rectangle)arg1).width, ((Rectangle)arg1).height);
 				setChanged();
 				notifyObservers();
 			} 

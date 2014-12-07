@@ -26,6 +26,7 @@ public class PanneauDessin extends JPanel {
 	}
 
 	public void creerGrille() {
+		
 		if(CadreDessinCache.getMode() == CadreDessinCache.MODE_CREATION)
 		{
 			creerComposants(this.jeu.getDessinOrig());
@@ -114,7 +115,7 @@ public class PanneauDessin extends JPanel {
 					if(jeu.getDessinOrig().estColorie(ligneSrc, colonneSrc) 
 							&& source.getEtat() == false)
 					{
-						source.switchEtat(jeu.getDessinOrig().estColorie(ligneSrc, colonneSrc));
+						//source.switchEtat(jeu.getDessinOrig().estColorie(ligneSrc, colonneSrc));
 						jeu.getDessinMontre().colorieCase(ligneSrc, colonneSrc, true);	
 					}
 					//Si la case original est vide et la source est blanche
@@ -137,6 +138,7 @@ public class PanneauDessin extends JPanel {
 		public boolean getEtat(){
 			return this.etat;
 		}
+		
 		//Setters
 		public void switchEtat(boolean etat){
 			
