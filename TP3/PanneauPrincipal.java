@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,6 +31,10 @@ public class PanneauPrincipal extends JPanel implements Observer {
 	private PanneauDessin panneauDessin;
 	
 	private PanneauVie panneauVie;
+	
+	private PanneauIndicesHaut panneauIndicesHaut;
+	
+	private PanneauIndicesGauche panneauIndicesGauche;
 
 	public PanneauPrincipal(){
 	
@@ -62,7 +67,14 @@ public class PanneauPrincipal extends JPanel implements Observer {
 
 		//On s'assure que le panneau est vide.
 		this.removeAll();
-
+		
+		panneauIndicesHaut = new PanneauIndicesHaut(jeu);
+		panneauIndicesGauche = new PanneauIndicesGauche(jeu);
+		
+		this.add(panneauIndicesHaut, BorderLayout.NORTH);
+		
+		this.add(panneauIndicesGauche, BorderLayout.WEST);
+		
 		//Le panneau de jeu
 		this.add(new PanneauDessin(jeu),
 			BorderLayout.EAST);
@@ -74,6 +86,9 @@ public class PanneauPrincipal extends JPanel implements Observer {
 		
 		panneauVie.setBackground(Color.yellow);
 		panneauVie.setSize(100, 50);
+		
+		
+		
 		
 		//On actualise le GUI
 		validate();
