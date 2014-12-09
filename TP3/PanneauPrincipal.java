@@ -71,6 +71,9 @@ public class PanneauPrincipal extends JPanel implements Observer {
 		panneauIndicesHaut = new PanneauIndicesHaut(jeu);
 		panneauIndicesGauche = new PanneauIndicesGauche(jeu);
 		
+		panneauIndicesHaut.setPreferredSize(new Dimension(100,150));
+		panneauIndicesGauche.setPreferredSize(new Dimension(100,150));
+		
 		this.add(panneauIndicesHaut, BorderLayout.NORTH);
 		
 		this.add(panneauIndicesGauche, BorderLayout.WEST);
@@ -84,9 +87,8 @@ public class PanneauPrincipal extends JPanel implements Observer {
 			//Le panneau de vie ï¿½ droite
 			PanneauVie panneauVie = new PanneauVie(jeu);
 			this.add(panneauVie,BorderLayout.EAST);
-			
 			panneauVie.setBackground(Color.yellow);
-			panneauVie.setSize(100, 50);
+			panneauVie.setPreferredSize(new Dimension(100,50));
 		}
 		
 		

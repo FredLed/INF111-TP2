@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,12 +56,16 @@ public class PanneauDessin extends JPanel {
 			{
 				//on traduit le dessin original en composante 
 				//en vérifiant chaque cases
-				if(dessin.estColorie(i, j)){					
-					this.add(new MonJButton(i,j,true));
+				if(dessin.estColorie(i, j)){		
+					MonJButton tempo= new MonJButton(i,j,true);
+					tempo.setPreferredSize(new Dimension(75,25));
+					this.add(tempo);
 				}
 				
 				else{
-					this.add(new MonJButton(i,j,false));
+					MonJButton tempo=new MonJButton(i,j,false);
+					tempo.setPreferredSize(new Dimension(75,25));
+					this.add(tempo);
 				}
 			}
 		}
